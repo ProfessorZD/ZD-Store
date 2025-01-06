@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZD Store - Shopping Cart">
+    <title>Shopping Cart - ZD Store</title>
+    <!-- ربط Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ربط Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- ربط CSS -->
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body {
+            background: #1e1e1e;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-link {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #333;
+            color: #383a3a !important;
+        }
+
+        .cart-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 50px;
+        }
+
+        .btn {
+            border-radius: 30px;
+        }
+
+        .checkout-form input,
+        .checkout-form button {
+            margin-bottom: 15px;
+        }
+
+        .checkout-form {
+            font-family: 'Pacifico', cursive;
+            font-size: 1rem;
+            background: #2c2c2e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(194, 198, 198, 0.3);
+        }
+
+        .checkout-form input {
+            background: #3e3e41;
+            border: 1px solid #505252;
+            color: #e0e0e0;
+        }
+
+        .checkout-form input:focus {
+            border-color: #c0c3c4;
+            outline: none;
+        }
+
+        .checkout-form button {
+            background: #00adb5;
+            color: #1e1e1e;
+        }
+
+        .checkout-form button:hover {
+            background: #5d6566;
+            color: #fff;
+        }
+
+        .contact-section {
+            background: #333;
+            color: #e0e0e0;
+            padding: 60px 0;
+        }
+
+        .contact-section h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            color: #d8e5e6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .contact-section a {
+            color: #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .contact-section a:hover {
+            color: #00adb5;
+            text-decoration: none;
+        }
+
+        footer {
+            background: #2c2c2e;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط التنقل -->
+    <header class="bg-dark">
+        <nav class="container d-flex justify-content-between align-items-center py-3">
+            <div class="logo" style="display: flex; align-items: center;">
+                <a href="index.html" style="display: inline-block;">
+                    <div style="background-color: #333; border-radius: 50%; width: 100px; height: 100px; display: flex; justify-content: center; align-items: center; border: 1px solid #00adb5;">
+                        <img src="images/logo.png" alt="ZD Store Logo" style="height: 100px; width: 100px; object-fit: cover;">
+                    </div>
+                </a>
+            </div>
+            <ul class="nav d-flex align-items-center">
+                <li class="nav-item"><a class="nav-link text-white" href="index.html"><i class="fas fa-home me-2"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="cart.html"><i class="fas fa-shopping-cart me-2"></i> Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   <!-- قسم السلة -->
+<section id="cart" class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-4" style="color: #00adb5;">Your Shopping Cart</h2>
+        <div id="cart-items" class="row g-4">
+            <!-- المنتجات ستُضاف ديناميكياً هنا باستخدام JavaScript -->
+        </div>
+        <div class="text-center mt-4">
+            <h3>Total: $<span id="total-price">0</span></h3>
+        </div>
+    </div>
+</section>
+
+
+    <!-- قسم إدخال بيانات الزبون -->
+    <section id="checkout-section" class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-4" style="color: #00adb5;">Checkout</h2>
+            <form id="checkout-form" class="checkout-form">
+                <div class="mb-3">
+                    <label for="customer-name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="customer-name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="customer-phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="customer-phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="customer-city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="customer-city" required>
+                </div>
+                <div class="mb-3">
+                    <label for="customer-town" class="form-label">Town</label>
+                    <input type="text" class="form-control" id="customer-town" required>
+                </div>
+                <div class="mb-3">
+                    <label for="discount-code" class="form-label">Discount Code (Optional)</label>
+                    <input type="text" class="form-control" id="discount-code">
+                    <button type="button" class="btn btn-secondary w-100 mt-2" id="apply-code">Apply Code</button>
+                </div>
+                <div class="mb-3 d-flex justify-content-between">
+                    <button type="button" class="btn btn-success w-48" id="cash-payment">Cash Payment</button>
+                    <button type="button" class="btn btn-primary w-48" id="visa-payment">Pay with Visa</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section id="contact" class="py-5 contact-section">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-4">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card p-4 shadow-sm text-center">
+                        <p class="mb-4">Feel free to reach us through the following platforms:</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <!-- زر واتساب -->
+                            <a href="https://wa.me/972584047951?text=Hello,%20I%20would%20like%20to%20inquire%20about%20your%20products." 
+                               target="_blank" class="btn btn-success">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <!-- زر إنستقرام -->
+                            <a href="https://www.instagram.com/zdstore2906" target="_blank" class="btn btn-primary">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                            <!-- زر تيك توك -->
+                            <a href="https://www.tiktok.com/@zdstore2906" target="_blank" class="btn btn-dark">
+                                <i class="fab fa-tiktok"></i> TikTok
+                            </a>
+                            <!-- زر الإيميل -->
+                            <a href="mailto:zdstore2906@gmail.com" class="btn btn-secondary">
+                                <i class="fas fa-envelope"></i> Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ربط JavaScript -->
+    <script src="cart.js"></script>
+   
+</body>
+</html>
+

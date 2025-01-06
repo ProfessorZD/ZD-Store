@@ -1,0 +1,237 @@
+/* خلفية الموقع */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #2c2c2e, #3e3e41); /* تدرج خلفية */
+    color: white;
+}
+
+/* الشعار */
+.logo {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 0.5px solid rgb(254, 111, 213);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+/* شريط التنقل */
+header {
+    background: #1a1a1d;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+header .logo img {
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgb(11, 11, 11);
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    flex-wrap: wrap; /* لجعل القائمة تتكيف */
+}
+
+.nav-link {
+    color: white;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    white-space: nowrap; /* لمنع الكلمات من الانكسار */
+}
+
+.nav-link:hover {
+    background: white;
+    color: black;
+    border-radius: 5px;
+}
+
+/* قسم المقدمة */
+.intro-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #1c1c1e, #333);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: white;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+
+.intro-logo {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    animation: fadeIn 2s ease-out;
+}
+
+.intro-text {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    animation: fadeIn 3s ease-out;
+    text-align: center; /* تحسين المحاذاة */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hide-intro {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* قسم المنتجات */
+#men-products {
+    padding: 60px 0;
+}
+
+#men-products h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: white; /* تعديل اللون إلى أبيض */
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.card {
+    background: #444;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-img-top {
+    border-radius: 10px 10px 0 0;
+    height: 300px; /* زيادة الحجم */
+    object-fit: cover;
+    width: 100%;
+}
+
+.card-title {
+    font-size: 1.5rem; /* تكبير الخط */
+    margin-top: 10px;
+    color: white; /* تعديل اللون إلى أبيض */
+    text-align: center;
+}
+
+.card-text {
+    font-size: 1.2rem; /* تكبير الخط */
+    color: white; /* تعديل اللون إلى أبيض */
+    margin: 5px 0;
+    text-align: center;
+}
+
+.btn-dark {
+    border-radius: 30px;
+    background-color: #1a1a1d;
+    color: white;
+    transition: all 0.3s ease;
+    padding: 12px 25px; /* توسيع الزر */
+    font-size: 1rem;
+}
+
+.btn-dark:hover {
+    background-color: white;
+    color: black;
+}
+
+/* قسم التواصل */
+#contact {
+    background-color: #333;
+    color: white;
+    padding: 60px 0;
+    border-top: 5px solid rgb(254, 252, 243);
+}
+
+#contact h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: rgb(254, 176, 233); /* تعديل اللون إلى أبيض */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 30px;
+    padding: 10px 15px;
+}
+
+textarea.form-control {
+    height: 150px;
+}
+
+.btn-lg {
+    border-radius: 30px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-lg:hover {
+    background-color: white;
+    color: rgb(234, 233, 231);
+    border: 2px solid rgb(243, 241, 230);
+}
+
+/* تذييل الصفحة */
+footer {
+    background: #1a1a1d;
+    color: white;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
